@@ -7,13 +7,21 @@ body{
 .name{
 	text-align: center;
 	font-size: 190px;
+	border-style: solid;
+	border-width: 15px;
+	margin-bottom: 5px;
+}
+
+.name:hover{
+	background-color: black;
+	color: white;
 }
 
 .profile_pic {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-bottom: 17px;
+    margin-bottom: 5px;
 }
 
 div#links{
@@ -21,7 +29,42 @@ div#links{
 	color: white;
 }
 
-.bio{
+.bio_header{
 	font-size: 24px;
+	text-align: center;
 	border-style: solid;
+	border-color: black;
 }
+
+.biography{
+	text-align: center;
+}
+.head{
+	font-weight: bold;
+}
+
+}
+.myButton {
+	background-color:transparent;
+	-moz-border-radius:28px;
+	-webkit-border-radius:28px;
+	border-radius:28px;
+	border:1px solid #566963;
+	display:inline-block;
+	cursor:pointer;
+	color: black;
+	font-family: Arial;
+	font-size:17px;
+	padding:5px 12px;
+	text-decoration:none;
+	text-shadow:0px 0px 0px #2b665e;
+}
+.myButton:hover {
+	background-color:black;
+	color: white;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+
