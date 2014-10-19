@@ -28,11 +28,11 @@
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      request.send("login=Nanny&lat=" + 42 + "&lng=" + 71);
+      request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
       request.onreadystatechange = function (){
         if(request.readyState == 4 && request.status == 200){
           //data = JSON.parse(request.responsetext);
-          console.log(request.responsetext);
+          console.log(request.readyState);
         }
       }
       console.log(request.responsetext);
