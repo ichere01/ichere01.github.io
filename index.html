@@ -26,6 +26,7 @@
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.onreadystatechange = function (){
+        console.log("here");
         if(request.readyState == 4 && request.status == 200){
           data = JSON.parse(request.responsetext);
         }
