@@ -25,7 +25,7 @@
       
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
-        addMyLocation(myLat, myLng);
+        addMyLocation(myLat, myLng, map);
         console.log(myLat + " " + myLng);
        // get_positions(data,map);
       }
@@ -42,7 +42,7 @@
       }
       console.log(request.responsetext);
 
-      function addMyLocation(myLat, myLng)
+      function addMyLocation(myLat, myLng, map)
       {
         if (navigator.geolocation) { 
           console.log("navigator supported");
