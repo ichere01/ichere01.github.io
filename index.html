@@ -20,6 +20,7 @@
       function initialize()
       {
       var request = new XMLHttpRequest();
+      var data;
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
