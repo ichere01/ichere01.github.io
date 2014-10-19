@@ -1,19 +1,71 @@
 <!DOCTYPE html>
+
 <html>
-	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-	<link rel="stylesheet" type="text/css" href="style.css">
 
-		<title> Ivan Cherem </title>
-	</head>
+  <head>
+    <title>Geolocation Map Example</title>
+    <link rel="stylesheet" href="map_style.css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
+    
+    <script>
+  
+     
+ 
+      function initialize()
+      {
+         var myOptions = {
+            zoom: 12, 
+            center: new google.maps.LatLng(myLat, myLng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+      
+        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        get_positions(data,map);
+      }
 
-	<body>
-		<h1 class="name"> Ivan Cherem M </h1>
-		<img class="profile_pic" src="ivan.jpg" alt="ivan"/>
-		<div id="links">
-			<a href="http://ichere01.github.io/bio.html" class="button">Biography</a>
-			<a href="http://ichere01.github.io/resume.html" class="button">Resume</a>
-		</div>
-	</body>	
+      var request = new XMLHttpRequest();
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+      request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
+      request.onreadystatechange = function (){
+        if(request.readyState == 4 && request.status == 200){
+          data = JSON.parse(request.responsetext);
+        }
+      }
+      console.log(request.responsetext);
+      request.send("login=MY_USERNAME&lat=" + someLat + "&lng=" + someLng);
 
+
+      var myLat = 42.3;
+      var myLng = -71.1;
+
+
+      //get_positions(data, map);
+      function get_positions(data, map){
+        for(i = 0; i < data.TripList.Trips.length; i++){
+          if(data.TripList.Trips[i].Position != null)
+          {
+            lon =  data.TripList.Trips[i].Position.Long;
+            lat =  data.TripList.Trips[i].Position.Lat;
+            addMarker(map,lat,lon);
+          }
+        }
+      }
+
+      function addMarker(map,lat,lon){
+        var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
+          title: 'Red Line',
+          map: map});
+
+      }
+     
+    
+      
+     
+    </script>
+  </head>
+  
+  <body onload="initialize()" >
+    <div id="map_canvas"></div>
+  </body>
 </html>
