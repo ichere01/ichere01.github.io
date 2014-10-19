@@ -21,7 +21,7 @@
           };
       
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        get_positions(data,map);
+       // get_positions(data,map);
       }
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
@@ -32,7 +32,7 @@
       }
       console.log(request.responsetext);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      request.send("login=MY_USERNAME&lat=" + someLat + "&lng=" + someLng);
+      request.send("login=MY_USERNAME&lat=" + myLat + "&lng=" + myLng);
 
 
       var myLat = 42.3;
