@@ -11,8 +11,9 @@
     
      <script>
   
-      var myLat = 42.3;
-      var myLng = -71.1;
+      var myLat = 10;
+      var myLng = 10;
+      getMyLocation(myLat, myLng);
  
       function initialize()
       {
@@ -23,8 +24,10 @@
           };
       
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        addMarker(map, myLat, myLng);
        // get_positions(data,map);
       }
+
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -36,10 +39,23 @@
         }
       }
       console.log(request.responsetext);
+
+      function getMyLocation(myLat, myLng)
+      {
+        if (navigator.geolocation) { 
+          navigator.geolocation.getCurrentPosition(function(position) {
+            myLat = position.coords.latitude;
+            myLng = position.coords.longitude;
+          });
+        }
+        else {
+          alert("Geolocation is not supported by your web browser.  What a shame!");
+        }
+      }
       
 
 
-      //get_positions(data, map);
+      // get_positions(data, map);
       // function get_positions(data, map){
       //   for(i = 0; i < data.TripList.Trips.length; i++){
       //     if(data.TripList.Trips[i].Position != null)
@@ -51,12 +67,12 @@
       //   }
       // }
 
-      // function addMarker(map,lat,lon){
-      //   var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
-      //     title: 'Red Line',
-      //     map: map});
+      function addMarker(map,lat,lon){
+        var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
+          title: 'Marked',
+          map: map});
 
-      // }
+      }
      
       // var request = new XMLHttpRequest();
       // request.open("get",jsonred,true);
