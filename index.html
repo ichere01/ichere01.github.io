@@ -14,16 +14,21 @@
 
       var myLat = 10;
       var myLng = 10;
+      myOptions = {
+            zoom: 12, 
+            center: new google.maps.LatLng(myLat, myLng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
       map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       //getMyLocation(myLat, myLng);
  
       function initialize()
       {
-         var myOptions = {
-            zoom: 12, 
-            center: new google.maps.LatLng(myLat, myLng),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
+         // var myOptions = {
+         //    zoom: 12, 
+         //    center: new google.maps.LatLng(myLat, myLng),
+         //    mapTypeId: google.maps.MapTypeId.ROADMAP
+         //  };
       
         //var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg'
