@@ -25,14 +25,15 @@
       }
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.onreadystatechange = function (){
         console.log("here");
         if(request.readyState == 4 && request.status == 200){
-          data = JSON.parse(request.responsetext);
+          //data = JSON.parse(request.responsetext);
+          console.log(request.responsetext);
         }
       }
       console.log(request.responsetext);
-      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
 
 
