@@ -38,7 +38,8 @@
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg';
         addMyLocation(myLat, myLng, map,image);
-        getCharacters(map, JSON.parse(request.responseText));
+        specs = JSON.parse(request.responseText);
+        getCharacters(map, specs);
        // get_positions(data,map);
       }
 
