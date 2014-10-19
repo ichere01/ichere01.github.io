@@ -13,7 +13,7 @@
   
       var myLat = 10;
       var myLng = 10;
-      getMyLocation(myLat, myLng);
+      //getMyLocation(myLat, myLng);
  
       function initialize()
       {
@@ -24,6 +24,8 @@
           };
       
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+        getMyLocation(myLat, myLng);
         addMarker(map, myLat, myLng);
        // get_positions(data,map);
       }
