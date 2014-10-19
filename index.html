@@ -20,26 +20,25 @@
       function initialize()
       {
       var request = new XMLHttpRequest();
-      var data;
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
       request.onreadystatechange = function (){
-        if(request.readyState == 4 && request.status == 200){
+        if(request.readyState == 4 && request.status == 200)
+        {
           data = JSON.parse(request.responseText);
-          console.log(data);
         }
       }
-         var myOptions = {
-            zoom: 12, 
-            center: new google.maps.LatLng(myLat, myLng),
-            mapTypeId: google.maps.MapTypeId.ROADMAP
-          };
+      var myOptions = {
+          zoom: 12, 
+          center: new google.maps.LatLng(myLat, myLng),
+          mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
       
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg'
         addMyLocation(myLat, myLng, map,image);
-        getCharacters(map,data);
+        getCharacters(map, JSON.parse(request.responseText));
        // get_positions(data,map);
       }
 
