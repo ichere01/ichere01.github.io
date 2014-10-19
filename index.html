@@ -26,6 +26,7 @@
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
 
         getMyLocation(myLat, myLng);
+        console.log(myLat + " " + myLng);
         addMarker(map, myLat, myLng);
        // get_positions(data,map);
       }
@@ -73,6 +74,7 @@
       // }
 
       function addMarker(map,lat,lon){
+        console.log(myLat + " " + myLng);
         var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
           title: 'Marked',
           map: map});
