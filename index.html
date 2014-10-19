@@ -24,7 +24,6 @@
         get_positions(data,map);
       }
       var request = new XMLHttpRequest();
-      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.onreadystatechange = function (){
         if(request.readyState == 4 && request.status == 200){
@@ -32,6 +31,7 @@
         }
       }
       console.log(request.responsetext);
+      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.send("login=MY_USERNAME&lat=" + someLat + "&lng=" + someLng);
 
 
