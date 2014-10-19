@@ -50,6 +50,8 @@
             myLat = position.coords.latitude;
             myLng = position.coords.longitude;
             addMarker(map, myLat, myLng);
+            var me = new google.maps.LatLng(myLat, myLng);
+            map.panTo(me);
 
           });
         }
