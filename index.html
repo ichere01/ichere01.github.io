@@ -20,6 +20,7 @@
       function initialize()
       {
       var request = new XMLHttpRequest();
+      data = null;
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
       request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
@@ -38,7 +39,7 @@
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg'
         addMyLocation(myLat, myLng, map,image);
-        getCharacters(map, JSON.parse(request.responseText));
+        getCharacters(map, data);
        // get_positions(data,map);
       }
 
