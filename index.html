@@ -44,7 +44,6 @@
       function addMyLocation(myLat, myLng, map, image)
       {
         if (navigator.geolocation) { 
-          console.log("navigator supported");
           navigator.geolocation.getCurrentPosition(function(position) {
             myLat = position.coords.latitude;
             myLng = position.coords.longitude;
