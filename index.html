@@ -31,7 +31,7 @@
       request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
       request.onreadystatechange = function (){
         if(request.readyState == 4 && request.status == 200){
-          data = JSON.parse(request.responsetext);
+          data = JSON.parse(request.responseText);
           console.log(data);
         }
       }
