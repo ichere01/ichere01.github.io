@@ -28,6 +28,7 @@
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg'
         addMyLocation(myLat, myLng, map,image);
+        getCharacters(map);
        // get_positions(data,map);
       }
 
@@ -44,7 +45,7 @@
       }
 /***************** GETTING CHARACTERS *************/
 
-      function getCharacters () {
+      function getCharacters (map) {
         for (i = 0; i < data.length; i++){
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
