@@ -10,7 +10,8 @@
 
     
      <script>
-  
+      
+
       var myLat = 10;
       var myLng = 10;
       //getMyLocation(myLat, myLng);
@@ -28,7 +29,7 @@
         addMyLocation(myLat, myLng, map,image);
        // get_positions(data,map);
       }
-
+/****************** REQUEST *******************/
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -39,15 +40,16 @@
           console.log(data);
         }
       }
-      console.log(request.responsetext);
+      //console.log(request.responsetext);
 
       function addMyLocation(myLat, myLng, map, image)
       {
+        info = "I'm here";
         if (navigator.geolocation) { 
           navigator.geolocation.getCurrentPosition(function(position) {
             myLat = position.coords.latitude;
             myLng = position.coords.longitude;
-            addMarker(map, myLat, myLng,image);
+            addMarker(map, myLat, myLng,image,info);
             var me = new google.maps.LatLng(myLat, myLng);
             map.panTo(me);
 
@@ -72,12 +74,19 @@
       //   }
       // }
 
-      function addMarker(map,lat,lon, image){
+      function addMarker(map,lat,lon, image, info){
         var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
           title: 'Marked',
           map: map,
           icon: image
         });
+        var infowindow = new google.maps.InfoWindow({
+            content: info
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+
 
       }
      
