@@ -14,6 +14,7 @@
 
       var myLat = 10;
       var myLng = 10;
+      map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
       //getMyLocation(myLat, myLng);
  
       function initialize()
@@ -24,12 +25,13 @@
             mapTypeId: google.maps.MapTypeId.ROADMAP
           };
       
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+        //var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg'
         addMyLocation(myLat, myLng, map,image);
        // get_positions(data,map);
       }
-/****************** REQUEST *******************/
+
+/****************** XML REQUEST *******************/
       var request = new XMLHttpRequest();
       request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
       request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -40,8 +42,51 @@
           console.log(data);
         }
       }
-      //console.log(request.responsetext);
+/***************** GETTING CHARACTERS *************/
 
+      function getCharacters () {
+        for (i = 0; i < data.length; i++){
+          name = data.characters[i].name;
+          var lat = data.characters[i].loc.latitude;
+          var lng = data.characters[i].loc.longitude;
+          var note = data.characters[i].loc.note;
+          var info = "latitude:" + lat + " longitude:" + lng + note;
+          var image;
+
+          if (name == "carmen")
+          {
+            image = "carmen.jpg";
+          }
+          if(name == "hescott")
+          {
+            image = "hescott.jpg"
+          }
+          if(name == "nr")
+          {
+            image = "nr.jpg"
+          }
+          if(name == "snape")
+          {
+            image = "snape.jpg"
+          }
+          if(name == "waldo")
+          {
+            image = "waldo.jpg"
+          }
+          if(name == "batman")
+          {
+            image = "batman.jpg"
+          }
+          addMarker()
+        }
+      }
+
+
+
+
+
+
+/**************** ADD MY LOCATION ***********/
       function addMyLocation(myLat, myLng, map, image)
       {
         info = "I'm here";
