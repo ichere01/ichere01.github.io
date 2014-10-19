@@ -3,7 +3,7 @@
 <html>
 
   <head>
-    <title>Geolocation Map Example</title>
+    <title>MMap</title>
     <link rel="stylesheet" href="map_style.css">
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
     <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
@@ -43,9 +43,11 @@
       function getMyLocation(myLat, myLng)
       {
         if (navigator.geolocation) { 
+          console.log("navigator supported");
           navigator.geolocation.getCurrentPosition(function(position) {
             myLat = position.coords.latitude;
             myLng = position.coords.longitude;
+            console.log("lat" + myLat " long" + myLng);
           });
         }
         else {
