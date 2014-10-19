@@ -26,7 +26,8 @@
       request.onreadystatechange = function (){
         if(request.readyState == 4 && request.status == 200)
         {
-          data = JSON.parse(request.responseText);
+          var data = JSON.parse(request.responseText);
+          getCharacters(map, data);
         }
       }
       var myOptions = {
@@ -38,8 +39,8 @@
         var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
         image = 'dollar-sign.jpg';
         addMyLocation(myLat, myLng, map,image);
-        specs = JSON.parse(request.responseText);
-        getCharacters(map, specs);
+        //specs = JSON.parse(request.responseText);
+        //getCharacters(map, specs);
        // get_positions(data,map);
       }
 
