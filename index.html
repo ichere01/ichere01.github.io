@@ -28,7 +28,7 @@
         {
           var data = JSON.parse(request.responseText);
           console.log(data);
-          getCharacters(map, data);
+          getCharacters(map, request);
         }
       }
       var myOptions = {
@@ -58,7 +58,8 @@
       // }
 /***************** GETTING CHARACTERS *************/
 
-      function getCharacters (map,data) {
+      function getCharacters (map,request) {
+        var data = JSON.parse(request.responseText);
         console.log("here " + data.length);
         for (i = 0; i < data.length; i++){
           name = data.characters[i].name;
