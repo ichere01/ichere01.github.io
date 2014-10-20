@@ -90,11 +90,11 @@
         console.log(data);
         for(i = 0; i < data.students.length; i++)
         {
-            name = data.students[i].name;
-            var lat = data.students[i].loc.latitude;
-            var lng = data.students[i].loc.longitude;
-            var note = data.students[i].loc.note;
-            var info = "name: " + name +  " latitude: " + lat + " longitude: " + lng + " " + note;
+            var login = data.students[i].login;
+            var lat = data.students[i].lat;
+            var lng = data.students[i].lng;
+            var time = data.students[i].created_at;
+            var info = "login: " + login +  " latitude: " + lat + " longitude: " + lng + " " + time;
             var image = 'student.png';
             addMarker(map, lat, lng, image, info);
 
