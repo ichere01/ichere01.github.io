@@ -99,7 +99,7 @@
           }
           addMarker(map, lat, lng, image, info);
           addPolyline(myLat,myLng, lat, lng, map);
-          getDistance(lat,lng,myLat,myLng);
+          getDistance(lat,lng,myLat,myLng, name);
         }
       }
 
@@ -156,7 +156,7 @@
         var d = R * c; 
 
         distanceBox = document.getElementById("distance");
-        distanceBox.innerHTML += (d + "\n");
+        distanceBox.innerHTML += ("distance from: "+ character + " = " + d + <br>);
 
       }
       function toRad(x) 
