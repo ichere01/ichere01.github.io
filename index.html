@@ -28,7 +28,7 @@
           {
             var data = JSON.parse(request.responseText);
             console.log(data);
-            getCharacters(map, this.data);
+            getCharacters(map, data);
           }
         }
         var myOptions = {
@@ -59,8 +59,8 @@
 /***************** GETTING CHARACTERS *************/
 
       function getCharacters (map,data) {
-        console.log("here " + data.length);
-        for (i = 0; i < data.length; i++){
+        console.log(" " + data.characters.length);
+        for (i = 0; i < data.characters.length; i++){
           console.log("here");
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
