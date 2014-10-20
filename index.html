@@ -19,30 +19,30 @@
  
       function initialize()
       {
-      var request = new XMLHttpRequest();
-      request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
-      request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
-      request.onreadystatechange = function (){
-        if(request.readyState == 4 && request.status == 200)
-        {
-          var data = JSON.parse(request.responseText);
-          console.log(data);
-          getCharacters(map, request);
+        var request = new XMLHttpRequest();
+        request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
+        request.onreadystatechange = function (){
+          if(request.readyState == 4 && request.status == 200)
+          {
+            var data = JSON.parse(request.responseText);
+            console.log(data);
+            getCharacters(map, request);
+          }
         }
-      }
-      var myOptions = {
-          zoom: 12, 
-          center: new google.maps.LatLng(myLat, myLng),
-          mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-      
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        image = 'dollar-sign.jpg';
-        addMyLocation(myLat, myLng, map,image);
-        //specs = JSON.parse(request.responseText);
-        //getCharacters(map, specs);
-       // get_positions(data,map);
+        var myOptions = {
+            zoom: 12, 
+            center: new google.maps.LatLng(myLat, myLng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+          var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+          image = 'dollar-sign.jpg';
+          addMyLocation(myLat, myLng, map,image);
+          //specs = JSON.parse(request.responseText);
+          //getCharacters(map, specs);
+         // get_positions(data,map);
       }
 
 /****************** XML REQUEST *******************/
@@ -62,6 +62,7 @@
         var data = JSON.parse(request.responseText);
         console.log("here " + data.length);
         for (i = 0; i < data.length; i++){
+          console.log("here");
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
           var lng = data.characters[i].loc.longitude;
