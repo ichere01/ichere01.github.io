@@ -100,8 +100,10 @@
           addMarker(map, lat, lng, image, info);
           var polyline_coords = 
           [
-            new google.maps.LatLng(myLat, myLng),
-            new google.maps.LatLng(lat, lng)
+          console.log(" me " + myLat, myLng);
+          console.log(lat,lng);
+            new google.maps.LatLng(lat, lng),
+            new google.maps.LatLng(myLat, myLng)
           ];
           var connection = new google.maps.Polyline({
             path: polyline_coords,
@@ -110,8 +112,7 @@
             strokeOpacity: 1.0,
             strokeWeight: 2
           });
-          console.log(myLat, myLng);
-          console.log(lat,lng);
+          
 
           connection.setMap(map);
         }
