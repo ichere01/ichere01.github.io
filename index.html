@@ -100,8 +100,8 @@
           addMarker(map, lat, lng, image, info);
           var polyline_coords = 
           [
+            position: {lat: myLat, lng: myLng},
             new google.maps.LatLng(lat, lng),
-            position: {lat: myLat, lng: myLng}
           ];
           
           var connection = new google.maps.Polyline({
