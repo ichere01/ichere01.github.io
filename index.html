@@ -59,39 +59,37 @@
 /***************** GETTING CHARACTERS *************/
 
       function getCharacters (map,data) {
-        console.log(" " + data.characters.length);
         for (i = 0; i < data.characters.length; i++){
-          console.log("here");
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
           var lng = data.characters[i].loc.longitude;
           var note = data.characters[i].loc.note;
-          var info = "latitude:" + lat + " longitude:" + lng + note;
+          var info = "latitude:" + lat + " longitude:" + lng + " " + note;
           var image;
 
           if (name == "carmen")
           {
-            image = "carmen.jpg";
+            image = 'carmen.jpg';
           }
           if(name == "hescott")
           {
-            image = "hescott.jpg"
+            image = 'hescott.jpg';
           }
           if(name == "nr")
           {
-            image = "nr.jpg"
+            image = 'nr.jpg';
           }
           if(name == "snape")
           {
-            image = "snape.jpg"
+            image = 'snape.jpg';
           }
           if(name == "waldo")
           {
-            image = "waldo.jpg"
+            image = 'waldo.jpg';
           }
           if(name == "batman")
           {
-            image = "batman.jpg"
+            image = 'batman.jpg';
           }
           console.log(info);
           addMarker(map, lat, lng, image, info);
