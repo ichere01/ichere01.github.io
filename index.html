@@ -64,7 +64,7 @@
 /***************** GETTING CHARACTERS *************/
 
       function getCharacters (map,data,myLat, myLng) {
-        console.log(myLat, myLng)
+
         for (i = 0; i < data.characters.length; i++){
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
@@ -110,6 +110,8 @@
             strokeOpacity: 1.0,
             strokeWeight: 2
           });
+          console.log(myLat, myLng);
+          console.log(lat,lng);
 
           connection.setMap(map);
         }
