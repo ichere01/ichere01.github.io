@@ -19,6 +19,20 @@
  
       function initialize()
       {
+        info = "I'm here";
+        if (navigator.geolocation) { 
+          navigator.geolocation.getCurrentPosition(function(position) {
+            myLat = position.coords.latitude;
+            myLng = position.coords.longitude;
+            addMarker(map, myLat, myLng,image,info);
+            var me = new google.maps.LatLng(myLat, myLng);
+            map.panTo(me);
+
+          });
+        }
+        else {
+          alert("Geolocation is not supported by your web browser");
+        }
         var request = new XMLHttpRequest();
         request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
         request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -124,20 +138,20 @@
 /**************** ADD MY LOCATION ***********/
       function addMyLocation(myLat, myLng, map, image)
       {
-        info = "I'm here";
-        if (navigator.geolocation) { 
-          navigator.geolocation.getCurrentPosition(function(position) {
-            myLat = position.coords.latitude;
-            myLng = position.coords.longitude;
-            addMarker(map, myLat, myLng,image,info);
-            var me = new google.maps.LatLng(myLat, myLng);
-            map.panTo(me);
+        // info = "I'm here";
+        // if (navigator.geolocation) { 
+        //   navigator.geolocation.getCurrentPosition(function(position) {
+        //     myLat = position.coords.latitude;
+        //     myLng = position.coords.longitude;
+        //     addMarker(map, myLat, myLng,image,info);
+        //     var me = new google.maps.LatLng(myLat, myLng);
+        //     map.panTo(me);
 
-          });
-        }
-        else {
-          alert("Geolocation is not supported by your web browser");
-        }
+        //   });
+        // }
+        // else {
+        //   alert("Geolocation is not supported by your web browser");
+        // }
       }
       
 
