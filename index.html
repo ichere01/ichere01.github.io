@@ -98,7 +98,8 @@
             image = 'batman.png';
           }
           addMarker(map, lat, lng, image, info);
-          addPolyline(myLat,myLng, lat, lng, map)
+          addPolyline(myLat,myLng, lat, lng, map);
+          getDistance(lat,lng,myLat,myLng);
         }
       }
 
@@ -156,7 +157,8 @@
         var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
         var d = R * c; 
 
-        alert(d);
+        distanceBox = getElementbyId(distance);
+        distanceBox = d;
       }
 
 
@@ -218,5 +220,6 @@
   
   <body onload="initialize()" >
     <div id="map_canvas"></div>
+    <div id="distance"></div>
   </body>
 </html>
