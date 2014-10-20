@@ -42,7 +42,7 @@
           {
             var data = JSON.parse(request.responseText);
             addMyLocation(myLat, myLng, map,image);
-            getCharacters(map, data, myLng, myLat);
+            getCharacters(map, data, myLat, myLng);
             getStudents(map,data);
           }
         }
@@ -107,7 +107,7 @@
         var polyline_coords = 
           [
             new google.maps.LatLng(lat, lng),
-            new google.maps.LatLng(myLng, myLat)
+            new google.maps.LatLng(myLat, myLng)
           ];
           
           var connection = new google.maps.Polyline({
