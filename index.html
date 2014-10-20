@@ -15,8 +15,6 @@
        myLat = 10;
        myLng = 10;
       
-      //getMyLocation(myLat, myLng);
- 
       function initialize()
       {
         info = "I'm here";
@@ -41,7 +39,6 @@
           if(request.readyState == 4 && request.status == 200)
           {
             var data = JSON.parse(request.responseText);
-            // addMyLocation(myLat, myLng, map,image);
             getCharacters(map, data, myLat, myLng);
             getStudents(map,data);
           }
@@ -54,10 +51,6 @@
         
           var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
           image = 'dollar.jpg';
-          // addMyLocation(myLat, myLng, map,image);
-          //specs = JSON.parse(request.responseText);
-          //getCharacters(map, specs);
-         // get_positions(data,map);
       }
 
 
@@ -164,42 +157,7 @@
       {
          return x * Math.PI / 180;
       }
-
-
-
-/**************** ADD MY LOCATION ***********/
-      function addMyLocation(myLat, myLng, map, image)
-      {
-        // info = "I'm here";
-        // if (navigator.geolocation) { 
-        //   navigator.geolocation.getCurrentPosition(function(position) {
-        //     myLat = position.coords.latitude;
-        //     myLng = position.coords.longitude;
-        //     addMarker(map, myLat, myLng,image,info);
-        //     var me = new google.maps.LatLng(myLat, myLng);
-        //     map.panTo(me);
-
-        //   });
-        // }
-        // else {
-        //   alert("Geolocation is not supported by your web browser");
-        // }
-      }
-      
-
-
-      // get_positions(data, map);
-      // function get_positions(data, map){
-      //   for(i = 0; i < data.TripList.Trips.length; i++){
-      //     if(data.TripList.Trips[i].Position != null)
-      //     {
-      //       lon =  data.TripList.Trips[i].Position.Long;
-      //       lat =  data.TripList.Trips[i].Position.Lat;
-      //       addMarker(map,lat,lon);
-      //     }
-      //   }
-      // }
-
+  
       function addMarker(map,lat,lon, image, info){
         var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
           title: 'Marked',
@@ -212,12 +170,8 @@
         google.maps.event.addListener(marker, 'click', function() {
           infowindow.open(map,marker);
         });
-
-
       }
-     
-      
-     
+        
     </script>
   </head>
   
