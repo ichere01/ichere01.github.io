@@ -98,15 +98,12 @@
             image = 'batman.png';
           }
           addMarker(map, lat, lng, image, info);
-           console.log(myLat, myLng);
-          console.log(lat,lng);
           var polyline_coords = 
           [
             new google.maps.LatLng(lat, lng),
             new google.maps.LatLng(myLat, myLng)
           ];
-           console.log(myLat, myLng);
-          console.log(lat,lng);
+          
           var connection = new google.maps.Polyline({
             path: polyline_coords,
             geodesic: true,
@@ -114,6 +111,7 @@
             strokeOpacity: 1.0,
             strokeWeight: 2
           });
+          console.log(connection);
           
 
           connection.setMap(map);
