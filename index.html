@@ -41,7 +41,7 @@
           if(request.readyState == 4 && request.status == 200)
           {
             var data = JSON.parse(request.responseText);
-            addMyLocation(myLat, myLng, map,image);
+            // addMyLocation(myLat, myLng, map,image);
             getCharacters(map, data, myLat, myLng);
             getStudents(map,data);
           }
