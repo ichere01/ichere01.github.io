@@ -12,8 +12,8 @@
      <script>
       
 
-      var myLat = 99.133;
-      var myLng = 19.433;
+      var myLat = 99.13;
+      var myLng = 19.43;
       
       //getMyLocation(myLat, myLng);
  
@@ -27,7 +27,6 @@
           if(request.readyState == 4 && request.status == 200)
           {
             var data = JSON.parse(request.responseText);
-            console.log(data);
             getCharacters(map, data);
           }
         }
@@ -45,17 +44,7 @@
          // get_positions(data,map);
       }
 
-/****************** XML REQUEST *******************/
-      // var request = new XMLHttpRequest();
-      // request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
-      // request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-      // request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
-      // request.onreadystatechange = function (){
-      //   if(request.readyState == 4 && request.status == 200){
-      //     data = JSON.parse(request.responseText);
-      //     console.log(data);
-      //   }
-      // }
+
 /***************** GETTING CHARACTERS *************/
 
       function getCharacters (map,data) {
@@ -64,7 +53,7 @@
           var lat = data.characters[i].loc.latitude;
           var lng = data.characters[i].loc.longitude;
           var note = data.characters[i].loc.note;
-          var info = "name: " + name +  "latitude: " + lat + " longitude: " + lng + " " + note;
+          var info = "name: " + name +  " latitude: " + lat + " longitude: " + lng + " " + note;
           var image;
 
           if (name == "carmen")
@@ -91,11 +80,24 @@
           {
             image = 'batman.png';
           }
-          console.log(info);
           addMarker(map, lat, lng, image, info);
         }
       }
 
+      function getStudents (map, data)
+      {
+        for(i = 0; i < data.students.length; i++)
+        {
+            name = data.characters[i].name;
+            var lat = data.characters[i].loc.latitude;
+            var lng = data.characters[i].loc.longitude;
+            var note = data.characters[i].loc.note;
+            var info = "name: " + name +  " latitude: " + lat + " longitude: " + lng + " " + note;
+            var image = 'student.png';
+            addMarker(map, lat, lng, image, info);
+
+        }
+      }
 
 
 
@@ -116,7 +118,7 @@
           });
         }
         else {
-          alert("Geolocation is not supported by your web browser.  What a shame!");
+          alert("Geolocation is not supported by your web browser");
         }
       }
       
@@ -150,16 +152,6 @@
 
       }
      
-      // var request = new XMLHttpRequest();
-      // request.open("get",jsonred,true);
-      // console.log(request.responsetext);
-      // request.onreadystatechange = function (){
-      //   if(request.readyState == 4 && request.status == 200){
-      //     data = JSON.parse(request.responsetext);
-      //     console.log("hello");
-      //   }
-      // }
-      // request.send();
       
      
     </script>
