@@ -27,7 +27,7 @@
           if(request.readyState == 4 && request.status == 200)
           {
             var data = JSON.parse(request.responseText);
-            getCharacters(map, data);
+            getCharacters(map, data, myLng, myLat);
             getStudents(map,data);
           }
         }
@@ -48,7 +48,7 @@
 
 /***************** GETTING CHARACTERS *************/
 
-      function getCharacters (map,data) {
+      function getCharacters (map,data,myLat, myLng) {
         for (i = 0; i < data.characters.length; i++){
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
@@ -82,6 +82,20 @@
             image = 'batman.png';
           }
           addMarker(map, lat, lng, image, info);
+          var polyline_coords = 
+          [
+            new google.maps.LatLng(myLat, myLng),
+            new google.maps.LatLng(lat, lng)
+          ];
+          var connection = new google.maps.Polyline({
+            path: polyline_coords,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+
+          connection.setMap(map);
         }
       }
 
