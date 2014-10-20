@@ -64,7 +64,9 @@
 /***************** GETTING CHARACTERS *************/
 
       function getCharacters (map,data,myLat, myLng) {
-        console.log(myLat + myLng);
+      
+      distances[data.characters.length];
+      names[data.characters.length];
         for (i = 0; i < data.characters.length; i++){
           name = data.characters[i].name;
           var lat = data.characters[i].loc.latitude;
@@ -97,7 +99,7 @@
           {
             image = 'batman.png';
           }
-           console.log(myLat + myLng);
+        
           addMarker(map, lat, lng, image, info);
           addPolyline(myLat,myLng, lat, lng, map);
           getDistance(lat,lng,myLat,myLng, name);
