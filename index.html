@@ -144,7 +144,7 @@
       {
         
 
-        var R = 6371; 
+        var R = 3961; 
         var x1 = lat2-lat1;
         var dLat = toRad(x1);  
         var x2 = lon2-lon1;
@@ -156,7 +156,7 @@
         var d = R * c; 
 
         distanceBox = document.getElementById("distance");
-        distanceBox.innerHTML += ("distance from "+ character + " = " + d + "\n \n");
+        distanceBox.innerHTML += ("distance from "+ character + " = " + d + " miles\n \n");
 
       }
       function toRad(x) 
