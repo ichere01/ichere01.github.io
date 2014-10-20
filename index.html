@@ -70,6 +70,8 @@
           var lat = data.characters[i].loc.latitude;
           var lng = data.characters[i].loc.longitude;
           var note = data.characters[i].loc.note;
+          var mlat = myLat;
+          var mlng = myLng;
           var info = "name: " + name +  " latitude: " + lat + " longitude: " + lng + " " + note;
           var image;
 
@@ -100,8 +102,8 @@
           addMarker(map, lat, lng, image, info);
           var polyline_coords = 
           [
-            position: {lat: myLat, lng: myLng},
             new google.maps.LatLng(lat, lng),
+            new google.maps.LatLng(mlat, mlng)
           ];
           
           var connection = new google.maps.Polyline({
