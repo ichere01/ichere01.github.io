@@ -70,8 +70,6 @@
           var lat = data.characters[i].loc.latitude;
           var lng = data.characters[i].loc.longitude;
           var note = data.characters[i].loc.note;
-          var mlat = myLat;
-          var mlng = myLng;
           var info = "name: " + name +  " latitude: " + lat + " longitude: " + lng + " " + note;
           var image;
 
@@ -100,10 +98,16 @@
             image = 'batman.png';
           }
           addMarker(map, lat, lng, image, info);
-          var polyline_coords = 
+          addPolyline(myLat,myLng, lat, lng, map)
+        }
+      }
+
+      function addPolyline(myLat,myLng, lat, lng, map)
+      {
+        var polyline_coords = 
           [
             new google.maps.LatLng(lat, lng),
-            new google.maps.LatLng(mlat, mlng)
+            new google.maps.LatLng(myLat, myLng)
           ];
           
           var connection = new google.maps.Polyline({
@@ -117,9 +121,8 @@
           
 
           connection.setMap(map);
-        }
-      }
 
+      }
       function getStudents (map, data)
       {
         console.log(data);
