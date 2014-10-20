@@ -27,6 +27,7 @@
           if(request.readyState == 4 && request.status == 200)
           {
             var data = JSON.parse(request.responseText);
+            addMyLocation(myLat, myLng, map,image);
             getCharacters(map, data, myLng, myLat);
             getStudents(map,data);
           }
@@ -39,7 +40,7 @@
         
           var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
           image = 'dollar.jpg';
-          addMyLocation(myLat, myLng, map,image);
+          // addMyLocation(myLat, myLng, map,image);
           //specs = JSON.parse(request.responseText);
           //getCharacters(map, specs);
          // get_positions(data,map);
