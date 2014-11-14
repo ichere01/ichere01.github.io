@@ -98,16 +98,21 @@
 					infowindow.open(map, this);
 				});
       		}
-      		function putQuote()
-      		{
-      			text = document.getElementById("motivational");
-      			text.innerHTML = "Hola Josefina!";
-      		}
+      		
 		</script>
 	</head>
 	
 	<body onload="init()">
 		<div id="map_canvas"></div>
-		<div id="motivational"> </div>
+		<div id="motivational"> 
+				<script>
+				putQuote();
+				function putQuote()
+      		{
+      			text = document.getElementById("motivational");
+      			text.innerHTML = "Hola Josefina!";
+      		}
+				</script>
+		</div>
 	</body>
 </html>
