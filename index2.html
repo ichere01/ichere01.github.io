@@ -1,0 +1,182 @@
+2<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <title>MMap</title>
+    <link rel="stylesheet" href="map_style.css">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=true&amp;libraries=places"></script>
+
+    
+     <script>
+      
+
+       myLat = 10;
+       myLng = 10;
+      
+      function initialize()
+      {
+        info = "I'm here";
+        if (navigator.geolocation) { 
+          navigator.geolocation.getCurrentPosition(function(position) {
+            myLat = position.coords.latitude;
+            myLng = position.coords.longitude;
+            addMarker(map, myLat, myLng,image,info);
+            var me = new google.maps.LatLng(myLat, myLng);
+            map.panTo(me);
+
+          });
+        }
+        else {
+          alert("Geolocation is not supported by your web browser");
+        }
+        var request = new XMLHttpRequest();
+        request.open("POST", "http://chickenofthesea.herokuapp.com/sendLocation", true);
+        request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        request.send("login=Nanny&lat=" + myLat + "&lng=" + myLng);
+        request.onreadystatechange = function (){
+          if(request.readyState == 4 && request.status == 200)
+          {
+            var data = JSON.parse(request.responseText);
+            getCharacters(map, data, myLat, myLng);
+            getStudents(map,data);
+          }
+        }
+        var myOptions = {
+            zoom: 12, 
+            center: new google.maps.LatLng(myLat, myLng),
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        };
+        
+          var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+          image = 'dollar.jpg';
+      }
+
+
+/***************** GETTING CHARACTERS *************/
+
+      function getCharacters (map,data,myLat, myLng) {
+      
+        for (i = 0; i < data.characters.length; i++){
+          name = data.characters[i].name;
+          var lat = data.characters[i].loc.latitude;
+          var lng = data.characters[i].loc.longitude;
+          var note = data.characters[i].loc.note;
+          var info = "name: " + name +  " latitude: " + lat + " longitude: " + lng + " " + note;
+          var image;
+
+          if (name == "carmen")
+          {
+            image = 'carmen.png';
+          }
+          if(name == "hescott")
+          {
+            image = 'hescott.png';
+          }
+          if(name == "nr")
+          {
+            image = 'nr.png';
+          }
+          if(name == "snape")
+          {
+            image = 'snape.png';
+          }
+          if(name == "waldo")
+          {
+            image = 'waldo.png';
+          }
+          if(name == "batman")
+          {
+            image = 'batman.png';
+          }
+        
+          addMarker(map, lat, lng, image, info);
+          addPolyline(myLat,myLng, lat, lng, map);
+          getDistance(lat,lng,myLat,myLng, name);
+        }
+      }
+
+      function addPolyline(myLat,myLng, lat, lng, map)
+      {
+        var polyline_coords = 
+          [
+            new google.maps.LatLng(lat, lng),
+            new google.maps.LatLng(myLat, myLng)
+          ];
+          
+          var connection = new google.maps.Polyline({
+            path: polyline_coords,
+            geodesic: true,
+            strokeColor: '#FF0000',
+            strokeOpacity: 1.0,
+            strokeWeight: 2
+          });
+          
+          connection.setMap(map);
+
+      }
+
+      function getStudents (map, data)
+      {
+        
+        for(i = 0; i < data.students.length; i++)
+        {
+         
+            var login = data.students[i].login;
+            var lat = data.students[i].lat;
+            var lng = data.students[i].lng;
+            var time = data.students[i].created_at;
+            var info = "login: " + login +  " latitude: " + lat + " longitude: " + lng + " created at: " + time;
+            var image = 'student.png';
+            addMarker(map, lat, lng, image, info);
+
+        }
+      }
+
+      function getDistance(lat1,lon1, lat2, lon2, character)
+      {
+        
+
+        var R = 3961; 
+        var x1 = lat2-lat1;
+        var dLat = toRad(x1);  
+        var x2 = lon2-lon1;
+        var dLon = toRad(x2);  
+        var a = Math.sin(dLat/2) * Math.sin(dLat/2) + 
+                        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * 
+                        Math.sin(dLon/2) * Math.sin(dLon/2);  
+        var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+        var d = R * c; 
+
+        distanceBox = document.getElementById("distance");
+        distanceBox.innerHTML += ("distance from "+ character + " = " + d + "miles" + "<br>");
+
+      }
+      function toRad(x) 
+      {
+         return x * Math.PI / 180;
+      }
+  1
+      function addMarker(map,lat,lon, image, info){
+        var marker = new google.maps.Marker({position: new google.maps.LatLng(lat,lon),
+          title: 'Marked',
+          map: map,
+          icon: image
+        });
+        var infowindow = new google.maps.InfoWindow({
+            content: info
+        });
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.open(map,marker);
+        });
+      }
+        
+    </script>
+  </head>
+  
+  <body onload="initialize()" >
+    <div id="map_canvas"></div>
+    <div id="distance"></div>
+  </body>
+</html>
